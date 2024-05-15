@@ -1,0 +1,199 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AGENDA OPERACIONES</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nomina.css') }}">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28289D;">
+        <div class="container">
+          <img src="/static/imagenes/logo2.png" alt="">
+            <a class="navbar-brand" href="/admin">Regresar al inicio</a>
+        </div>
+    </nav>
+
+ 
+    <main class="container-fluid py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="text-center mb-5">Agenda Operaciones</h1>
+                <form action="/agregar1" method="post" class="d-flex justify-content-center align-items-center mb-3">
+                    <input type="text" name="actividad" class="form-control me-2" placeholder="Ingrese una actividad">
+                    <button type="submit" class="btn btn-primary"  style="background-color: #3d3df6;">Agregar</button>
+                </form>
+                <ul class="list-group">
+                    {% for actividad in actividades %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ actividad[1] }}
+                            <a href="/completar1/{{ actividad[0] }}" class="btn btn-sm btn-success"  style="background-color: #4edfb5;">Finalizar</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AGENDA OPERACIONES</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nomina.css') }}">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #28289D;">
+        <div class="container">
+          <img src="/static/imagenes/logo2.png" alt="">
+            <a class="navbar-brand" href="/admin">Regresar al inicio</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container-fluid py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <!-- Gráfico 1 -->
+                <h1>Gráfico de Estado de Líneas</h1>
+                <div id="Gráfico 1">
+                    <!-- Aquí puedes mostrar la imagen del gráfico -->
+                    <img src="{{ url_for('plot_image') }}" alt="Gráfico de Estado de Líneas">
+                </div>
+
+                <!-- Gráfico 2 -->
+                <div>
+                    <h2>Gráfico 2</h2>
+                    <canvas id="grafico2"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="text-center mb-5">Agenda Operaciones</h1>
+                <form action="/agregar1" method="post" class="d-flex justify-content-center align-items-center mb-3">
+                    <input type="text" name="actividad" class="form-control me-2" placeholder="Ingrese una actividad">
+                    <button type="submit" class="btn btn-primary"  style="background-color: #3d3df6;">Agregar</button>
+                </form>
+                <ul class="list-group">
+                    {% for actividad in actividades %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ actividad[1] }}
+                            <a href="/completar1/{{ actividad[0] }}" class="btn btn-sm btn-success"  style="background-color: #4edfb5;">Finalizar</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <!-- Script para cargar datos de los gráficos -->
+
+
+    <script>
+        // Cargar datos para el primer gráfico
+        fetch('/api/grafico1')
+          .then(response => response.json())
+          .then(data => {
+                const ctx = document.getElementById('grafico1').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line', // Tipo de gráfico
+                    data: {
+                        labels: data.map(item => item.fecha),
+                        datasets: [{
+                            label: 'Datos del Gráfico 1',
+                            data: data.map(item => item.valor),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+    
+    <!-- <script>
+
+
+        // Cargar datos para el primer gráfico
+        fetch('/api/grafico1')
+          .then(response => response.json())
+          .then(data => {
+                const ctx = document.getElementById('grafico1').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line', // Tipo de gráfico
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Datos del Gráfico 1',
+                            data: data.values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+
+        // Cargar datos para el segundo gráfico
+        fetch('/api/grafico2')
+          .then(response => response.json())
+          .then(data => {
+                const ctx = document.getElementById('grafico2').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Tipo de gráfico
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Datos del Gráfico 2',
+                            data: data.values,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script> -->
+</body>
+</html>

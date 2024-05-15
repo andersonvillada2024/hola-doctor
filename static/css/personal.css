@@ -1,0 +1,13 @@
+#miTabla {
+    font-size: 0.8rem; /* Reduce el tamaño de la fuente */
+}
+#miTabla th, #miTabla td {
+    padding: 0.5rem; /* Ajusta el espaciado entre las celdas */
+}
+/* Ajusta el ancho de las columnas correo_personal y correo_corporativo */
+#miTabla td:nth-child(2), #miTabla th:nth-child(2) {
+    width: 00%; /* Ajusta según sea necesario */
+}
+#miTabla td:nth-child(3), #miTabla th:nth-child(3) {
+    width: 00%; /* Ajusta según sea necesario */
+}

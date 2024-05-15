@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Consulta rips sura</title>
+    <style>
+        .navbar {
+            background-color: #28289D !important;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #28289D;
+            color: #FFFFFF;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <img src="/static/imagenes/logo2.png" alt="">
+            <a href="{{ url_for('exportar_a_excelsura') }}" class="navbar-brand">Descargar</a>
+            <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
+        </div>
+    </nav>
+    <main>
+        <h1>Consolidado rips sura</h1>
+        <div class="container">
+            <p>Total de registros: {{ count }}</p>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hora</th> 
+                    <th>Orden</th>
+                    <th>IPS</th>
+                    <th>Tipo Identificacion Paciente</th>
+                    <th>Identificacion Paciente</th>
+                    <th>Primer Nombre Paciente</th>
+                    <th>Segundo Nombre Paciente</th>
+                    <th>Primer Apellido Paciente</th>
+                    <th>Segundo Apellido Paciente</th> 
+                    <th>Sexo</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Edad Años</th>
+                    <th>Edad Meses</th>
+                    <th>Edad Dias</th>
+                    <th>Codigo Tipo Afiliado</th>
+                    <th>Tipo Afiliado</th>
+                    <th>Codigo Departamento</th>
+                    <th>Departamento</th>
+                    <th>Codigo Municipio</th>
+                    <th>Municipio</th>
+                    <th>Zona</th>
+                    <th>Tipo Identificacion Medico</th>
+                    <th>Identificacion Medico</th>
+                    <th>Nombres Medico</th> 
+                    <th>Codigo SURACUP</th>
+                    <th>Codigo CUPS</th>
+                    <th>Nombre Prestacion</th>
+                    <th>Codigo Causa Externa</th>
+                    <th>Nombre Causa Externa</th>
+                    <th>Finalidad Consulta</th>
+                    <th>Finalidad Procedimiento</th>
+                    <th>Dx Principal</th>
+                    <th>Nombre Dx Principal</th>
+                    <th>Tipo Dx</th>
+                    <th>Nombre TipoDx</th>
+                    <th>Dx Asociado 1</th>
+                    <th>Dx Asociado 2</th>
+                    <th>Dx Asociado 3</th>
+                    <th>Destino Alta</th>
+                    <th>Destino Remision</th>
+                    <th>Destino Hospitalizacion</th>
+                    <th>Estado Salida</th>
+                    <th>Horas Observacion</th>
+                    <th>Hora Salida</th>
+                    <th>fecha de envio</th>
+                </tr>
+         </thead>
+         <tbody>
+             {% for novedads in novedadess %}
+             <tr>
+                 <td>{{ novedads[0] }}</td>
+                 <td>{{ novedads[1] }}</td>
+                 <td>{{ novedads[2] }}</td>
+                 <td>{{ novedads[3] }}</td>
+                 <td>{{ novedads[4] }}</td>
+                 <td>{{ novedads[5] }}</td>
+                 <td>{{ novedads[6] }}</td>
+                 <td>{{ novedads[7] }}</td>
+                 <td>{{ novedads[8] }}</td>
+                 <td>{{ novedads[9] }}</td>
+                 <td>{{ novedads[10] }}</td>
+                 <td>{{ novedads[11] }}</td>
+                 <td>{{ novedads[12] }}</td>
+                 <td>{{ novedads[13] }}</td>
+                 <td>{{ novedads[14] }}</td>
+                 <td>{{ novedads[15] }}</td>
+                 <td>{{ novedads[16] }}</td>
+                 <td>{{ novedads[17] }}</td>
+                 <td>{{ novedads[18] }}</td>
+                 <td>{{ novedads[19] }}</td>
+                 <td>{{ novedads[20] }}</td>
+                 <td>{{ novedads[21] }}</td>
+                 <td>{{ novedads[22] }}</td>
+                 <td>{{ novedads[23] }}</td>
+                 <td>{{ novedads[24] }}</td>
+                 <td>{{ novedads[25] }}</td>
+                 <td>{{ novedads[26] }}</td>
+                 <td>{{ novedads[27] }}</td>
+                 <td>{{ novedads[28] }}</td>
+                 <td>{{ novedads[29] }}</td>
+                 <td>{{ novedads[30] }}</td>
+                 <td>{{ novedads[31] }}</td>
+                 <td>{{ novedads[32] }}</td>
+                 <td>{{ novedads[33] }}</td>
+                 <td>{{ novedads[34] }}</td>
+                 <td>{{ novedads[35] }}</td>
+                 <td>{{ novedads[36] }}</td>
+                 <td>{{ novedads[37] }}</td>
+                 <td>{{ novedads[38] }}</td>
+                 <td>{{ novedads[39] }}</td>
+                 <td>{{ novedads[40] }}</td>
+                 <td>{{ novedads[41] }}</td>
+                 <td>{{ novedads[42] }}</td>
+                 <td>{{ novedads[43] }}</td>
+                 <td>{{ novedads[44] }}</td>
+             </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </main>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="{{ url_for('exportar_a_excelsura') }}" class="navbar-brand">Descargar</a>
+            <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
+        </div>
+    </nav>
+</body>
+</html>

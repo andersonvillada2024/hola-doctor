@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Plano holadr</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/personal.css') }}">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
+    </head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+        }
+        .boton{
+            color: #28289d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/admin"><button class="btn btn-primary">Regresar al inicio</button></a><br><br>
+        <img src="/static/imagenes/plano.jpeg" alt="Plano oficina">
+    </div>   
+ 
+</body>
+</html>

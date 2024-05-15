@@ -1,0 +1,29 @@
+/* styles.css */
+.alerta {
+    position: fixed;
+    top: 0;
+    right: 0; /* Posiciona la alerta en el lado derecho de la pantalla */
+    width: 300px; /* Ancho fijo de la alerta */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: right 0.5s; /* Transición suave al cerrar la alerta */
+}
+
+.alerta img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 20px;
+}
+
+.alerta button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}

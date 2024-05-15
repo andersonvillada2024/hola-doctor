@@ -1,0 +1,10 @@
+﻿Hora,Orden,IPS,Tipo Identificación Paciente,Identificación Paciente,Primer Nombre Paciente,Segundo Nombre Paciente,Primer Apellido Paciente,Segundo Apellido Paciente,Sexo,Fecha de Nacimiento,Edad Años,Edad Meses,Edad Dias,Códifo Tipo Afiliado,Tipo Afiliado,Código Departamento,Departamento,Código Municipio,Municipio,Zona,Tipo Identificación Médico,Identificación Médico,Nombres Médico,Código SURACUP,Código CUPS,Nombre Prestación,Código Causa Externa,Nombre Causa Externa,Finalidad Consulta,Finalidad Procedimiento,Dx Principal,Nombre Dx Principal,Tipo Dx,Nombre Tipo Dx,Dx Asociado 1,Dx Asociado 2,Dx Asociado 3,Destino Alta,Destino Remisión ,Destino Hospitalización,Estado Salida,Horas Observación,Hora Salida;;;;;
+2024/04/16 07:10:16,137361-85516900,137361,RC,1017284818,LISSANA,,BELLO,MONTES,F,2023/11/14,0,5,15,7,SUBSIDIADO,05,ANTIOQUIA,001,MEDELLIN,Urbano,CC,43726912,LUISA FERNANDA PATIÑO GIL,7000027,890383,TELEMEDICINA INTERACTIVA MEDICO PEDIATRA (IPS VIRTUAL),13,ENFERMEDAD GENERAL,10,,R000,TAQUICARDIA NO ESPECIFICADA,1,Impresión diagnóstica,,,,1,2,2,ND, 00: 00,07:10:16;;;;;
+2024/04/16 07:18:25,137361-85517000,137361,RC,1239089796,MARIANA,SOFIA,GOMEZ,MONTOYA,F,2020/09/28,3,7,2,2,BENEFICIARIOS,68,SANTANDER,001,BUCARAMANGA,Urbano,CC,43726912,LUISA FERNANDA PATIÑO GIL,7000027,890383,TELEMEDICINA INTERACTIVA MEDICO PEDIATRA (IPS VIRTUAL),13,ENFERMEDAD GENERAL,10,,B338,OTRAS ENFERMEDADES VIRALES ESPECIFICADAS,1,Impresión diagnóstica,,,,1,2,2,ND, 00: 00,07:18:25;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;

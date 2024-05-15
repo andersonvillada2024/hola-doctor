@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTROL DE PERSONAL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script><title>Datos del Día</title>
+    <style>
+        .navbar {
+            background-color: #28289D !important;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #28289D;
+            color: #FFFFFF;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <img src="/static/imagenes/logo2.png" alt="Logo" class="navbar-brand">
+                <a href="{{ url_for('exportar_a_excel4') }}" class="navbar-brand">Descargar</a>
+                <a class="navbar-brand" href="/admin">Regresar al inicio</a>
+            </div>
+        </nav>
+    <main>
+        <h1>inventario fisico</h1>
+        <div class="table">
+            
+            <table id="miTabla" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>NOMBRES COMPLETOS</th>
+                        <th>NUMERO CEDULA</th>
+                        <th>CARGO</th>
+                        <th>PUESTO</th>
+                        <th>NUMERO CELULAR</th>
+                        <th>ML-PC</th>
+                        <th>ML-PANTALLA</th>
+                        <th>MOUSE</th>
+                        <th>GUAYA</th>
+                        <th>CARGADOR</th>
+                        <th>DIADEMA</th>
+                        <th>FECHA DE ENVIO</th>
+                        <th>SILLA</th>
+                        <th>CUBICULO</th>
+                        <th>DESCAN SAPIES</th>
+                        <th>OBSERVA CIONES</th>
+                        <th>Estado</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asignacioninventario in asignacionesinventario %}
+                    <tr>
+                        <td>{{ asignacioninventario[0] }}</td>
+                        <td>{{ asignacioninventario[1] }}</td>
+                        <td>{{ asignacioninventario[2] }}</td>
+                        <td>{{ asignacioninventario[3] }}</td>
+                        <td>{{ asignacioninventario[4] }}</td>
+                        <td>{{ asignacioninventario[5] }}</td>
+                        <td>{{ asignacioninventario[6] }}</td>
+                        <td>{{ asignacioninventario[7] }}</td>
+                        <td>{{ asignacioninventario[8] }}</td>
+                        <td>{{ asignacioninventario[9] }}</td>
+                        <td>{{ asignacioninventario[10] }}</td>
+                        <td>{{ asignacioninventario[11] }}</td>
+                        <td>{{ asignacioninventario[12] }}</td>
+                        <td>{{ asignacioninventario[13] }}</td>
+                        <td>{{ asignacioninventario[14] }}</td>
+                        <td>{{ asignacioninventario[15] }}</td>
+                        <td>{{ asignacioninventario[16] }}</td>
+                        
+                        <!-- Botón para abrir el modal -->
+                        <td>
+                        
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal{{ asignacioninventario[3] }}"  style="background-color: #3d3df6;">
+                                Actualizar
+                            </button>
+                        </td>
+                        <!-- Modal -->
+                    
+                            <div class="modal fade" id="miModal{{ asignacioninventario[3] }}" tabindex="-1" role="dialog" aria-labelledby="miModalLabel{{ asignacioninventario[3] }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                
+                                <h5 class="modal-title" id="miModalLabel{{ asignacioninventario[3] }}">Actualizar {{ asignacioninventario[3] }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <!-- Aquí va el formulario para actualizar los datos -->
+                                <form id="formActualizar" method="post" action="/update5">
+                                        <input type="hidden" name="numero_puesto" value="{{ asignacioninventario[3] }}">
+                                        <div class="form-group">
+                                            <label for="nombres_completos">NOMBRES_COMPLETOS</label>
+                                            <input type="text" class="form-control" id="nombres_completos" name="nombres_completos" value="{{ asignacioninventario[0] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cedula">NUMERO DE CEDULA</label>
+                                            <input type="text" class="form-control" id="cedula" name="cedula" value="{{ asignacioninventario[1] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cargo">CARGO</label>
+                                            <input type="text" class="form-control" id="cargo" name="cargo" value="{{ asignacioninventario[2] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="extension">NUMERO CELULAR</label>
+                                            <input type="text" class="form-control" id="extension" name="extension" value="{{ asignacioninventario[4] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ml_pc">ML-PC</label>
+                                            <input type="text" class="form-control" id="ml_pc" name="ml_pc" value="{{ asignacioninventario[5] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ml_pantalla">ML-PANTALLA</label>
+                                            <input type="text" class="form-control" id="ml_pantalla" name="ml_pantalla" value="{{ asignacioninventario[6] }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mause">MOUSE</label>
+                                            <input type="checkbox" id="mause" name="mause" {{ "checked" if asignacioninventario[7] == "Sí" else "" }}>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="guaya">GUAYA</label>
+                                            <input type="checkbox" id="guaya" name="guaya" {{ "checked" if asignacioninventario[8] == "Sí" else "" }}>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cargador">CARGADOR</label>
+                                            <input type="checkbox" id="cargador" name="cargador" {{ "checked" if asignacioninventario[9] == "Sí" else "" }}>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="diadema">DIADEMA</label>
+                                            <input type="checkbox" id="diadema" name="diadema" {{ "checked" if asignacioninventario[10] == "Sí" else "" }}>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="silla">SILLA</label>
+                                            <input type="checkbox" id="silla" name="silla" {{ "checked" if asignacioninventario[12] == "Sí" else "" }}>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cubiculo">CUBICULO</label>
+                                            <input type="checkbox" id="cubiculo" name="cubiculo" {{ "checked" if asignacioninventario[13] == "Sí" else "" }}>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descansapies">DESCANSAPIES</label>
+                                            <input type="checkbox" id="descansapies" name="descansapies" {{ "checked" if asignacioninventario[14] == "Sí" else "" }}>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="estado">Estado</label>
+                                            <select type="text" class="form-control" id="estado" name="estado" value="{{ asignacioninventario[16] }}">
+                                                <option value="0">Seleccione una opcion</option>
+                                                <option value="ACTIVO">ACTIVO</option>
+                                                <option value="INACTIVO">INACTIVO</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones">OBSERVACIONES</label>
+                                            <input type="text" class="form-control" id="observaciones" name="observaciones" value="{{ asignacioninventario[15] }}">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"  style="background-color: #28289D;">Guardar cambios</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function abrirModalActualizar(id, nombres_completos, cedula, cargo, extension, ml_pc, ml_pantalla, mause, guaya, cargador, diadema, silla, cubiculo, descansapies, observaciones, numero_puesto,estado) {
+                document.getElementById('idActualizar').value = id;
+                document.getElementById('nombres_completos').value = nombres_completos;
+                document.getElementById('cedula').value = cedula;
+                document.getElementById('cargo').value = cargo;
+                document.getElementById('extension').value = extension;
+                document.getElementById('ml_pc').value = ml_pc;
+                document.getElementById('ml_pantalla').value = ml_pantalla;
+                document.getElementById('observaciones').value = observaciones;
+                document.getElementById('estado').value = estado;
+                // Actualiza los estados de los checkboxes
+                document.getElementById('mause').checked = mause === 'Sí';
+                document.getElementById('guaya').checked = guaya === 'Sí';
+                document.getElementById('cargador').checked = cargador === 'Sí';
+                document.getElementById('diadema').checked = diadema === 'Sí';
+                document.getElementById('silla').checked = silla === 'Sí';
+                document.getElementById('cubiculo').checked = cubiculo === 'Sí';
+                document.getElementById('descansapies').checked = descansapies === 'Sí';
+                // Abre el modal
+                $('#miModal').modal('show');
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Selecciona todos los checkboxes
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            
+                checkboxes.forEach(function(checkbox) {
+                    // Establece el estado inicial del checkbox basado en el valor de data-value
+                    checkbox.checked = checkbox.getAttribute('data-value') === 'no';
+            
+                    // Agrega un event listener para el cambio de estado
+                    checkbox.addEventListener('change', function() {
+                        // Actualiza el valor del checkbox basado en su estado
+                        this.value = this.checked ? 'si' : 'No';
+                    });
+                });
+            });
+            </script>
+    </main>
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+                <a href="{{ url_for('exportar_a_excel4') }}" class="navbar-brand">Descargar</a>
+                <a class="navbar-brand" href="/admin" >Regresar al inicio</a>
+          </div>
+      </nav>
+</body>
+</html>

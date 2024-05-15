@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>INVENTARIO OUTSOURCING</title>
+    <style>
+       .navbar {
+            background-color: #28289D!important;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #28289D;
+            color: #FFFFFF;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <img src="/static/imagenes/logo2.png" alt="">
+            <a href="#" class="navbar-brand" data-bs-toggle="modal" data-bs-target="#nuevoRegistroModal">Agregar Nuevo Registro</a>
+            <a href="/exportar_a_excelinv" class="navbar-brand">Descargar</a>
+            <a class="navbar-brand" href="/admin">Regresar al inicio</a>
+        </div>
+    </nav>
+    <main>
+        <h1>INVENTARIO EQUIPOS OUTSOURCING</h1>
+        <!-- Filter Dropdowns -->
+        <div class="mb-3">
+            <label for="filtroSerial">Filtrar por Tipo:</label>
+            <select id="filtroSerial" class="form-select">
+                <option value="todo">Todo</option>
+                <option value="monitor">Monitor</option>
+                <option value="computador">Computador</option>
+                <option value="guaya">Guaya</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="filtroEstado">Filtrar por Estado:</label>
+            <select id="filtroEstado" class="form-select">
+                <option value="todo">Todo</option>
+                <option value="vigente">Vigente</option>
+                <option value="devuelto">Devuelto</option>
+            </select>
+        </div>
+        <div id="conteoItems" class="mb-3"></div>
+        <table id="tablaInventario" class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>SERIAL</th>
+                <th>DESCRIPCION DEL SERIAL</th>
+                <th>DESCRIPCION LINEAL</th>
+                <th>TARIFA</th>
+                <th>FACTURABLE</th>
+                <th>ESTADO</th>
+                <th>FECHA INGRESO</th>
+                <th>OBSERVACIONES</th>
+                <th>FECHA RETIRO</th>
+                <th>ACTUALIZAR ESTADO</th>
+            </tr>
+            {% for rowi in rowsi %}
+            <tr>
+                <td>{{ rowi[0] }}</td>
+                <td>{{ rowi[1] }}</td>
+                <td>{{ rowi[2] }}</td>
+                <td>{{ rowi[3] }}</td>
+                <td>{{ rowi[4] }}</td>
+                <td>{{ rowi[5] }}</td>
+                <td>{{ rowi[6] }}</td>
+                <td>{{ rowi[7] }}</td>
+                <td>{{ rowi[8] }}</td>
+                <td>{{ rowi[9] }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ rowi[0] }}"  style="background-color: #28289D;">Actualizar</button>
+                    <div class="modal fade" id="modal{{ rowi[0] }}" tabindex="-1" aria-labelledby="modal{{ rowi[0] }}Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal{{ rowi[0] }}Label">Actualizar Estado {{ rowi[1] }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/updateinv" method="post">
+                                        <input type="hidden" name="id" value="{{ rowi[0] }}">
+                                        <select name="estado" class="form-select" required>
+                                            <option value="Vigente">Vigente</option>
+                                            <option value="devuelto">Devuelto</option>
+                                        </select>
+                                        <br>
+                                        <textarea name="observaciones" class="form-control" rows="3" placeholder="Agregar observaciones"></textarea>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Actualizar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <div class="modal fade" id="nuevoRegistroModal" tabindex="-1" aria-labelledby="nuevoRegistroModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="nuevoRegistroModalLabel">Nuevo Registro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="formulario_inv" method="post">
+                            <div class="form-group">
+                                <label for="serial">Serial</label>
+                                <input type="text" class="form-control" id="serial" name="serial">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcionserial">Descripcion serial</label>
+                                <input type="text" class="form-control" id="descripcionserial" name="descripcionserial">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcionlineal">Descripcion lineal</label>
+                                <input type="text" class="form-control" id="descripcionlineal" name="descripcionlineal">
+                            </div>
+                            <div class="form-group">
+                                <label for="tarifa">Tarifa</label>
+                                <input type="number" class="form-control" id="tarifa" name="tarifa">
+                            </div>
+                            <div class="form-group">
+                                <label for="facturable">Facturable</label>
+                                <input type="checkbox" class="form-check-input" id="facturable" name="facturable">
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary" style="background-color: #28289D;">Guardar cambios</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Bootstrap JS -->
+    <script>
+        document.getElementById('filtroSerial').addEventListener('change', filtrarTabla);
+        document.getElementById('filtroEstado').addEventListener('change', filtrarTabla);
+
+        document.addEventListener('DOMContentLoaded', function () {
+    // Event listeners para los filtros
+    document.getElementById('filtroSerial').addEventListener('change', filtrarTabla);
+    document.getElementById('filtroEstado').addEventListener('change', filtrarTabla);
+    // Filtrar la tabla inicialmente
+    filtrarTabla();
+});
+
+function filtrarTabla() {
+    // Obtener valores de los filtros
+    var filtroSerial = document.getElementById('filtroSerial').value;
+    var filtroEstado = document.getElementById('filtroEstado').value;
+    // Obtener filas de la tabla
+    var filas = document.querySelectorAll('#tablaInventario tr');
+    var contador = 0;
+    // Iterar sobre las filas
+    filas.forEach(function (fila, index) {
+        // Ignorar la primera fila (encabezados)
+        if (index > 0) {
+            // Obtener valores de la fila
+            var serial = fila.cells[2].textContent.toLowerCase();
+            var estado = fila.cells[6].textContent.toLowerCase(); // Ajustar el índice de la columna para el estado
+            var mostrar = true;
+            // Aplicar filtros
+            if (filtroSerial !== 'todo' && serial.indexOf(filtroSerial) === -1) {
+                mostrar = false;
+            }
+            if (filtroEstado !== 'todo' && estado !== filtroEstado) {
+                mostrar = false;
+            }
+            // Mostrar o ocultar la fila según los filtros
+            fila.style.display = mostrar ? '' : 'none';
+            if (mostrar) {
+                contador++;
+            }
+        }
+    });
+    // Actualizar el contador de registros mostrados
+    document.getElementById('conteoItems').textContent = 'Se muestran ' + contador + ' registros';
+}
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTROL NOVEDADES DE NOMINA</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/static/css/registro.css">
+</head>
+<body>
+   
+    <main>
+
+        <form id="formulario" action="{{ url_for('procesar_formulario4') }}" method="post" enctype="multipart/form-data">
+			<!-- Grupo: Usuario -->
+			<div class="formulario__grupo" id="grupo__usuario">
+                <h1 for="nombre" class="formulario__label" > CONTROL NOVEDADES DE NOMINA</h1>
+				<label for="usuario" class="formulario__label">Nombres completos</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="nombre" id="usuario" placeholder="john123" required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Nombre -->
+			<div class="formulario__grupo" id="grupo__nombre">
+				<label for="nombre" class="formulario__label">Tipo de novedad</label>
+				<div class="formulario__grupo-input">
+                    <select id="tipo_novedad" name="tipo_novedad" required>
+                        <option value="0">Seleccione una opcion</option>
+                        <option value="licencia_remunerada">Licencia Remunerada</option>
+                        <option value="licencia_no_remunerada">Licencia no Remunerada</option>
+                        <option value="permiso_cumpleaños">Permiso Cumpleaños</option>
+                        <option value="suspencion">suspencion</option>
+                        <option value="dia_de_la_familia">dia de la familia</option>
+                        <option value="licencia_por_luto">licencia por luto</option>
+                        <option value="vacaciones">vacaciones</optProbion>
+                        <option value="calamidad_domestica">Calamidad domestica</optProbion>
+                        <option value="falta_sin_justificacion">Falta sin justificacion</optProbion>
+                        <option value="permiso_votaciones">Permiso votacion</option>
+                        <option value="otro">Otro</option>
+                   
+                  </select>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Contraseña -->
+			<div class="formulario__grupo" id="grupo__password">
+				<label for="lider_a_cargo" class="formulario__label">Lider a cargo</label>
+				<div class="formulario__grupo-input">
+					<select id="lider_a_cargo" name="lider_a_cargo" required>
+                        <option value="0">Seleccione una opcion</option>
+						<option value="PAOLA CRISTINA GIRALDO OSORIO">PAOLA CRISTINA GIRALDO OSORIO</option>
+                        <option value="MILENA MARIA ECHAVARRIA HENAO">MILENA MARIA ECHAVARRIA HENAO</option>
+                        <option value="VALERIA RODRIGUEZ AREIZA">VALERIA RODRIGUEZ AREIZA</option>
+                        <option value="NATALIA ANDREA ZAPATA TORO">NATALIA ANDREA ZAPATA TORO</option>
+                        <option value="ALEX DAVID GIRALDO BARRERA">ALEX DAVID GIRALDO BARRERA</option>
+                      </select>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+			</div>
+
+			<!-- Grupo: Contraseña 2 -->
+			<div class="formulario__grupo" id="grupo__password2">
+				<label for="password2" class="formulario__label">Fecha inicio</label>
+				<div class="formulario__grupo-input">
+					<input type="date" class="formulario__input" name="fecha_inicio" id="password2" required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+			</div>
+
+			<!-- Grupo: Correo Electronico -->
+			<div class="formulario__grupo" id="grupo__correo">
+				<label for="correo" class="formulario__label">Fecha fin</label>
+				<div class="formulario__grupo-input">
+					<input type="date" class="formulario__input" name="fecha_fin" id="correo"  required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Teléfono -->
+			<div class="formulario__grupo" id="grupo__telefono">
+				<label for="telefono" class="formulario__label">Dias novedad</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="dias_novedad" id="telefono" placeholder="4491234567" required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+			</div>
+
+			<!-- Grupo: Terminos y Condiciones -->
+            <div class="formulario__grupo" id="grupo__telefono">
+				<label for="telefono" class="formulario__label">Observaciones adicionales</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="observaciones" id="telefono" placeholder="escribe tu observacion">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+			</div>
+
+            <div class="formulario__grupo" id="grupo__chekin">
+                <label for="archivo_pdf" class="formulario__label">Archivo adjunto:</label>
+                <div class="formulario__grupo-input">
+                    <input type="file" id="archivo_pdf" name="archivo_pdf" accept="application/pdf" >
+                </div><br><hr>
+            </div><br><br><br><hr>
+			<div class="formulario__mensaje" id="formulario__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+			</div>
+
+			<div class="formulario__grupo formulario__grupo-btn-enviar">
+				<button type="submit" class="formulario__btn" onclick="btn_guardar" >Enviar</button>
+			</div>
+		</form>
+	</main>
+
+	<script>
+		document.getElementById('formulario').addEventListener('submit', function(event) {
+			// Verificar si algún campo seleccionable tiene el valor "0"
+			var selectElements = document.querySelectorAll('select');
+			for (var i = 0; i < selectElements.length; i++) {
+				if (selectElements[i].value === "0") {
+					alert('Por favor, seleccione una opción válida en todos los campos. valida los campos de seleccion multiple');
+					event.preventDefault(); // Evitar el envío del formulario
+					return;
+				}
+			}
+			alert('El formulario se ha enviado correctamente.');
+		});
+	</script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+</html>
+

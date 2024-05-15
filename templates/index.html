@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HOLA DR APP</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/soporte.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/medicos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/novedades.css') }}">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="/static/css/imagen_alerta">
+
+  <script defer src="js/app.js"></script>
+ 
+
+</head>
+ 
+
+<body>
+
+
+  {% if success_message %}
+  <div>
+      {{ success_message }}
+      <button onclick="redirectToHome()">Aceptar</button>
+  </div>
+  {% endif %}
+  <header class="topheader">
+    <nav class="topnav">
+      <a href="#" class="logo">
+        <img height="70" width="200" src="{{ url_for('static', filename='imagenes/hola doctor logo.jpg') }}" alt="hola doctor">
+        <h2>{{ username }}</h2>
+        <div class="logotype">
+
+      </a>
+      <button class="open-menu" aria-label="Abrir menú">
+        <img src="{{ url_for('static', filename='imagenes/list-stars.svg') }}" alt="abrir menu">
+      </button>
+      <ul class="menu">
+        <button class="close-menu" aria-label="Cerrar menú">
+          <img src="{{ url_for('static', filename='imagenes/x-circle.svg') }}" alt="cerrar menú">
+        </button>
+        <!-- <li><a href="#inicio" class="">Inicio</a></li> -->
+        <li><a href="#medicos">Medicos</a></li>
+        <li><a href="#calculadora">Calculadora IMC</a></li>
+        <li><a href="https://forms.office.com/pages/responsepage.aspx?id=3AS15ao0bEuqfKyTG16VypyspRVc0r9CnO5IIHXVwfNUNUtZR0dFOElYNTMxOVFOM0ZHMERRNkg5Qi4u">CONDICIONES INSEGURAS</a></li>
+        <li><a href="/manualmedicos">MANUAL</a></li>
+        <li><a href="/logout">SALIR</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- inicio seccion de inicio -->
+s  <div class="horizontal-padding vertical-padding" >
+    <section class="inicio" id="inicio">
+      <div class="inicio-info">
+        <h1 class="inicio-titulo" >Bienvenid@s</h1>
+          <div class="inicio-img-seccion"></div>
+         
+        <p class="inicio-detalle">
+          Lugar dedicado a profesionales de la salud! En este espacio encontrarán recursos especializados, actualizaciones
+          médicas y herramientas para potenciar su práctica. Exploren nuestro contenido y descubran cómo podemos colaborar
+          juntos para alcanzar el bienestar de la comunidad. ¡Gracias por confiar en nosotros para su desarrollo
+          profesional!
+        </p>
+        <!-- <button class="inicio-btn">DESCARGAR</button> -->
+      </div>
+      <span class="inicio-img-seccion">
+        <img class="inicio-img" src="{{ url_for('static', filename='imagenes/medico.png') }}" alt="medico">
+        <div class="inicio-img-linea" ></div>
+      </span>
+    </section>
+  </div>
+                      <!-- inicia seccion de medicos -->
+  <section class="experiences" id="medicos">
+    <!-- <img  class="wave" src="{{ url_for('static', filename='imagenes/wave.svg') }}" alt="division"> -->
+    <div class="experiences-body">
+      <h2 class="experiences-title">Medicos</h2>
+      <div class="experiences-grid">
+        <div class="empty"></div>
+        <div class="line"></div>
+        <div class="experience">
+          <div class="experience-date">Registro de pacientes</div>
+          <div class="experience-company"></div>
+          <div class="experience-position">lleva el control del registro de tus pacientes.</div>
+          <div class="experience-description"><br><hr>
+            <a href="/registro"><button type="button" class="btn btn-primary btn-lg">Registro de pacientes</button> </a>
+         </div>
+        </div>
+        
+        <div class="experience experience_left">
+          <div class="experience-date">Solicitar soporte</div>
+          <div class="experience-position">¿tienes inconvenientes? <br> cuentanos lo resolveremos lo mas pronto posible.</div><br>
+          <div class="experience-description">
+            <form action="{{ url_for('procesar_formulario3') }}" method="post" >
+              <div class="form-group">
+                <label for="nombre_medico">Nombre del Médico:</label><br>
+                <input type="text" id="nombre_medico" name="nombre_medico" required><br>
+              </div>
+              <div class="form-group">   
+                  <label for="tipo_de_inconveniente"  > Tipo de Inconveniente:</label><br>
+                  <select type="tipo_de_inconveniente" name="tipo_de_inconveniente" id="tipo_de_inconveniente" required >
+                    <option value="0">Seleccione una opcion</option>
+                    <option value="Problema con Navegador">Problema con Navegador</option>
+                    <option value="Problema con Ipsa">Problema con Ipsa</option>
+                    <option value="Problema con Pager">Problema con Pager</option>
+                    <option value="Problema con Internet">Problema con Internet</option>
+                    <option value="Problema con Microsip">Problema con Microsip</option>
+                    <option value="Problema con la diadema">Problema con la diadema</option>
+                    <option value="Problema con el mouse">Problema con el mouse</option>
+                    <option value="Problema con la pantalla">Problema con la pantalla</option>
+                    <option value="otro">Otro</option>
+                  </select><br>
+              </div>
+              <div class="form-group">
+                <label for="numero_de_cubiculo">Número de Cubículo:</label><br>
+                <input type="text" id="numero_de_cubiculo" name="numero_de_cubiculo" required><br>
+              </div>
+              <div class="form-group">
+                <label for="observaciones">Observaciones Adicionales:</label><br>
+                <textarea id="observaciones" name="observaciones"></textarea><br>
+              </div>
+              <div class="experience-description"><br><hr>
+                <a><button type="submit" value="Enviar">Enviar</button> </a>
+             </div>
+            </form>
+            <div class="experience-description"><br><hr>
+              <a href="/soporte_medicos"><button type="submit">Consultar estado de solicitud</button> </a>
+           </div>
+          </div>    
+        </div>
+          <div class="line"></div>
+          <div class="empty"></div>
+          <div class="empty"></div>
+          <div class="line"></div>
+        <div class="experience">
+          <div class="experience-date">Registro entrega de equipos y puestos de trabajo</div>
+          <div class="experience-position">registra que activos tienes a tu cargo</div>
+          <div class="experience-description"><br><hr>
+             <a href="/form"><button type="submit" value="ADMINISTRADOR">Registrar</button> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <img  class="wave wave_bottom" src="{{ url_for('static', filename='imagenes/wave.svg') }}" alt="division"> -->
+  </section>
+  <section class="inicio" id="calculadora">
+    <div class="inicio-info">
+      <div class="calculadora">
+          <h1>Calculadora de Índice de Masa Corporal (IMC)</h1>
+          <label for="peso">Peso (kg):</label>
+          <input type="number" id="peso" placeholder="Ingrese su peso">
+          <label for="altura">Altura (m):</label>
+          <input type="number" id="altura" placeholder="Ingrese su altura">
+          <button onclick="calcularIMC()">Calcular IMC</button>
+          <p id="resultado"></p>
+      </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      function calcularIMC() {
+          const peso = document.getElementById('peso').value;
+          const altura = document.getElementById('altura').value;
+
+          if (peso && altura) {
+              const imc = peso / (altura * altura);
+              let estado = '';
+
+              if (imc < 18.5) {
+                  estado = 'Bajo peso';
+              } else if (imc >= 18.6 && imc < 24.9) {
+                  estado = 'SALUDABLE';
+              } else if (imc >= 25 && imc < 29.9) {
+                  estado = 'CON SOBREPESO';
+              } else if (imc >= 30 && imc < 39.9) {
+                  estado = 'CON OBESIDAD';
+              } else {
+                  estado = 'OBESIDAD EXTREMA DE ALTO RIESGO';
+              }
+
+              // Mostrar el resultado en un modal
+              const modal = Swal.fire({
+                  title: 'Índice de Masa Corporal (IMC)',
+                  html: `Su IMC es: <strong>${imc.toFixed(2)}</strong><br>Estado: <strong>${estado}</strong>`,
+                  icon: 'info',
+                  confirmButtonText: 'Aceptar'
+              });
+
+              // Limpiar los campos al cerrar el modal
+              modal.then((result) => {
+                  document.getElementById('peso').value = '';
+                  document.getElementById('altura').value = '';
+              });
+          } else {
+              Swal.fire({
+                  title: 'Error',
+                  text: 'Por favor, ingrese su peso y altura.',
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+              });
+          }
+      }
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTROL NOVEDADES DE NOMINA</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/static/css/registro_incapacidad.css">
+</head>
+<body>
+   
+    <main>
+
+        <form id="formulario" action="{{ url_for('procesar_formulario5') }}" method="post" enctype="multipart/form-data">
+			<!-- Grupo: Usuario -->
+			<div class="formulario__grupo" id="grupo__usuario">
+                <img width="720" height="180" src="/static/imagenes/incapacidades.png" alt="">
+				
+			</div>
+            <div class="formulario__grupo formulario__grupo-nombres-lider">
+                <label for="lider_a_cargo" class="formulario__label">Lider a cargo</label>
+                <div class="formulario__grupo-input">
+                    <select id="lider_a_cargo" name="lider_a_cargo" required>
+                        <option value="0">Seleccione una opcion</option>
+						<option value="PAOLA CRISTINA GIRALDO OSORIO">PAOLA CRISTINA GIRALDO OSORIO</option>
+                        <option value="MILENA MARIA ECHAVARRIA HENAO">MILENA MARIA ECHAVARRIA HENAO</option>
+                        <option value="VALERIA RODRIGUEZ AREIZA">VALERIA RODRIGUEZ AREIZA</option>
+                        <option value="NATALIA ANDREA ZAPATA TORO">NATALIA ANDREA ZAPATA TORO</option>
+                        <option value="ALEX DAVID GIRALDO BARRERA">ALEX DAVID GIRALDO BARRERA</option>
+                    </select>
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                
+            </div>
+            <!-- Campo Nombres completos -->
+        <div class="nombre" id="grupo__password2">
+                <label for="nombre" class="formulario__label ">Nombres completos</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="john123" required>
+                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+           
+                    <label for="formulario__grupo" class="formulario__label">Numero de cedula</label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="4491234567" required>
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+                </div>
+        </div>
+
+			<div class="formulario__grupo" id="grupo__nombre">
+				<label for="cargo" class="formulario__label">Cargo</label>
+				<div class="formulario__grupo-input">
+                    <select id="cargo" name="cargo" required>
+                        <option value="0">Seleccione una opcion</option>
+                        <option value="Medico general">Medico general</option>
+                        <option value="Medico pediatra">Medico pediatra</option>
+                        <option value="Psicologo">Psicologo</option>
+                        <option value="Aprendiz sena">Aprendiz sena</option>
+                        <option value="Auxiliar de enfermeria">Auxiliar de enfermeria </option>
+                        <option value="Analista de conpensacion y ss">Analista de conpensacion y ss</option>
+                        <option value="Administrativo">Administrativo</option>
+                  </select>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+			</div>
+
+			<!-- Grupo: Contraseña -->
+			<div class="formulario__grupo" id="grupo__password">
+				<label for="eps" class="formulario__label">Prestadora de salud</label>
+				<div class="formulario__grupo-input">
+					<select id="eps" name="eps" required>
+                        <option value="0">Seleccione una opcion</option>
+                        <option value="Sura">Sura</option>
+                        <option value="Salud total">Salud total</option>
+                        <option value="Sanitas">Sanitas</option>
+                        <option value="Nueva eps">Nueva eps</option>
+						<option value="Coosalud movilidad<">Coosalud movilidad</option>
+						<option value="Comfachoco">Comfachoco</option>
+                      </select>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+			</div>
+            <div class="formulario__grupo" id="grupo__password">
+				<label for="eg_transito" class="formulario__label">Eg/atransito</label>
+				<div class="formulario__grupo-input">
+					<select id="eg_transito" name="eg_transito" required>
+                        <option value="0">Seleccione una opcion</option>
+                        <option value="EG">EG</option>
+                        <option value="AL">AL</option>
+                      </select>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+			</div>
+            
+            <div class="formulario__grupo" id="grupo__password">
+				<label for="prorroga" class="formulario__label">Prorroga</label>
+				<div class="formulario__grupo-input">
+					<select id="prorroga" name="prorroga" required>
+                        <option value="0">Seleccione una opcion</option>
+                        <option value="no">NO</option>
+                        <option value="si">SI</option>
+                        
+                      </select>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+			</div>
+            <div class="formulario__grupo" id="grupo__password2">
+				<label for="nro_incapacidad" class="formulario__label">Numero de incapacidad</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="nro_incapacidad" id="nro_incapacidad">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+			</div>
+			<!-- Grupo: Contraseña 2 -->
+			<div class="formulario__grupo" id="grupo__password2">
+				<label for="password2" class="formulario__label">Fecha inicio</label>
+				<div class="formulario__grupo-input">
+					<input type="date" class="formulario__input" name="fecha_inicio" id="password2" required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+			</div>
+
+			<!-- Grupo: Correo Electronico -->
+			<div class="formulario__grupo" id="grupo__correo">
+				<label for="fecha_final" class="formulario__label">Fecha final</label>
+				<div class="formulario__grupo-input">
+					<input type="date" class="formulario__input" name="fecha_final" id="fecha_final"  required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				
+			</div>
+            <div class="formulario__grupo" id="grupo__telefono">
+				<label for="diagnostico" class="formulario__label">Diagnostico</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="diagnostico" id="diagnostico">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+			</div><div class="formulario__grupo" id="grupo__telefono">
+				<label for="profesional" class="formulario__label">Profesional</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="profesional" id="profesional"required>
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+			</div>
+			<!-- Grupo: Terminos y Condiciones -->
+            <div class="formulario__grupo" id="grupo__telefono">
+				<label for="observaciones" class="formulario__label">Observaciones adicionales</label>
+				<div class="formulario__grupo-input">
+					<input type="text" class="formulario__input" name="observaciones" id="observaciones" placeholder="escribe tu observacion">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.</p>
+			</div>
+
+            <div class="formulario__grupo" id="grupo__chekin">
+                <label for="archivo_pdf" class="formulario__label">Archivo PDF O JPG adjunto:</label>
+                <div class="formulario__grupo-input">
+                    <input type="file" id="archivo_pdf" name="archivo_pdf" accept="application/pdf" >
+                </div><br><hr>
+            </div><br><br><br><hr>
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" class="formulario__btn" onclick="btn_guardar" >Enviar</button>
+            </div>
+		</form>
+	</main>
+		<script>
+			document.getElementById('formulario').addEventListener('submit', function(event) {
+				// Verificar si algún campo seleccionable tiene el valor "0"
+				var selectElements = document.querySelectorAll('select');
+				for (var i = 0; i < selectElements.length; i++) {
+					if (selectElements[i].value === "0") {
+						alert('Por favor, seleccione una opción válida en todos los campos,valida los campos de seleccion multiple.');
+						event.preventDefault(); // Evitar el envío del formulario
+						return;
+					}
+				}
+				alert('El formulario se ha enviado correctamente.');
+			});
+		</script>
+		
+	
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+</html>
+

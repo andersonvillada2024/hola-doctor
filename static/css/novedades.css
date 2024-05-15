@@ -1,0 +1,95 @@
+/* Estilos generales */
+/* body {
+    /* font-family: Arial, sans-serif; */
+    /* margin: 0;
+    padding: 0; */
+    /* background-color: #f4f4f4;
+}  */
+
+.horizontal-padding, .vertical-padding {
+    padding: 20px;
+}
+
+.novedades {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+ .soporte-titulo {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-azul--);
+} 
+
+.login-container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Estilos para el formulario */
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-row {
+    flex: 1 1 45%; /* Ajusta el tamaño de las columnas */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-row label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-row input, .form-row select, .form-row textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.form-row textarea {
+    resize: vertical;
+}
+
+.enviar_novedades {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%; /* Asegura que el botón de envío se extienda a lo ancho */
+    align-items: center;
+}
+
+.enviar_novedades button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+}
+
+.enviar_novedades button:hover {
+    background-color: #0056b3;
+    align-items: center;
+}
+
+    
+   
